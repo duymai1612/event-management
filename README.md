@@ -6,3 +6,6 @@ File CreateDB.sql
 
 # Backup DB
 File EventManagement.bak
+
+# ERD
+https://dbdiagram.io/d/5de620dbedf08a25543ea335
