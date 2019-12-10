@@ -4,7 +4,7 @@
     ViewBag.Title = "Faculties List";
 }
 
-<h2>FacultyList</h2>
+<h2>Faculties List</h2>
 
 <p>
     @Html.ActionLink("Create New Faculty", "CreateFaculty")
@@ -29,9 +29,7 @@
             @Html.DisplayFor(modelItem => item.IsInActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "UpdateFaculty", new { id=item.FacultyID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FacultyID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FacultyID })
+            @Html.ActionLink("Edit", "UpdateFaculty", new { id=item.FacultyID })
         </td>
     </tr>
 }

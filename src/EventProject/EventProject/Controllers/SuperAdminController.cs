@@ -1,4 +1,5 @@
-﻿using EventProject.Models;
+﻿using EventProject.App_Start;
+using EventProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -11,11 +12,13 @@ using System.Web.Mvc;
 
 namespace EventProject.Controllers
 {
+    [Authorization]
+    [SuperAdminAuthorization]
     public class SuperAdminController : Controller
     {
         // GET: SuperAdmin
         EventContext db = new EventContext();
-        #region Users
+        #region Users         
         public ActionResult UsersList()
         {
             var usrLs = new List<UserViewModel>();

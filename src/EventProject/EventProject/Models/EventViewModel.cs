@@ -18,6 +18,11 @@ namespace EventProject.Models
             this.IsInActive = isInActive;
         }
 
+        public EventViewModel()
+        {
+
+        }
+
         public int EventID { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }

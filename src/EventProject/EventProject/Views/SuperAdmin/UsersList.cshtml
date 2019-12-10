@@ -4,7 +4,7 @@
     ViewBag.Title = "Users List";
 }
 
-<h2>UsersList</h2>
+<h2>Users List</h2>
 
 <p>
     @Html.ActionLink("Create New User", "CreateUser")
@@ -73,9 +73,7 @@
                 @Html.DisplayFor(modelItem => item.IsInActive)
             </td>
             <td>
-                @Html.ActionLink("Edit", "UpdateUser", new { id = item.UserID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                @Html.ActionLink("Edit", "UpdateUser", new { id = item.UserID })
             </td>
         </tr>
     }

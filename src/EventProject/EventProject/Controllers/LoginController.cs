@@ -18,6 +18,7 @@ namespace EventManagement.Controllers
         public ActionResult Index()
         {
             if (Session["UserID"] != null) Session["UserID"] = null;
+            if (Session["Role"] != null) Session["Role"] = null;
             return View();
         }
         [HttpPost]
@@ -28,11 +29,13 @@ namespace EventManagement.Controllers
                 string pwd = getMD5(Password);
                 var userList = (from x in db.Users
                                 where x.id == Username && x.password == pwd && x.role == LogType
+                                && x.isInactive==false
                                 select x).FirstOrDefault();
 
                 if (userList != null)
                 {
                     Session["UserID"] = Username;
+                    Session["Role"] = userList.role;
                     return RedirectToAction("Index", "Home");
                 }
             }
