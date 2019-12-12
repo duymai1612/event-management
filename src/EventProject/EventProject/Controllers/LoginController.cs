@@ -22,21 +22,24 @@ namespace EventManagement.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(string Username, string Password, string LogType)
+        public ActionResult Index(string Username, string Password)
         {
             if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
             {
                 string pwd = getMD5(Password);
                 var userList = (from x in db.Users
-                                where x.id == Username && x.password == pwd && x.role == LogType
-                                && x.isInactive==false
+                                where x.id == Username && x.password == pwd && x.isInactive==false
                                 select x).FirstOrDefault();
 
                 if (userList != null)
                 {
                     Session["UserID"] = Username;
                     Session["Role"] = userList.role;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Event");
+                }
+                else
+                {
+                    return View();
                 }
             }
             return View();

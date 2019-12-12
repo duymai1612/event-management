@@ -27,13 +27,17 @@ namespace EventProject.Controllers
                 usrLs.Add(new UserViewModel(usr.id, usr.password, usr.firstName, usr.lastName, usr.dob,
                     usr.gender, usr.role, usr.imageUrl, usr.isInactive, usr.majorId));
             });
-            return View(usrLs);
+
+            var model = from x in usrLs
+                        orderby x.UserID ascending
+                        select x;
+            return View(model);
         }
         [HttpGet]
         public ActionResult CreateUser()
         {
             ViewBag.majorList = new SelectList(
-                db.Majors.Select(x => new { Text = x.name, Value = x.id }), "Value", "Text");
+                db.Majors.Where(x => x.isInactive==false).Select(x => new { Text = x.name, Value = x.id }), "Value", "Text");
 
             return View();
         }
@@ -103,7 +107,7 @@ namespace EventProject.Controllers
                 usr.dob, usr.gender, usr.role, usr.imageUrl, usr.isInactive, usr.majorId);
 
             ViewBag.majorList = new SelectList(
-                db.Majors.Select(x => new { Text = x.name, Value = x.id }), "Value", "Text", usr.majorId);
+                db.Majors.Where(x => x.isInactive==false).Select(x => new { Text = x.name, Value = x.id }), "Value", "Text", usr.majorId);
 
             return View(edituser);
         }
@@ -150,6 +154,27 @@ namespace EventProject.Controllers
                 return RedirectToAction("UsersList");
             }
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult DeleteUser(int? id)
+        {
+            if (id==null)
+            {
+                return Json(new { Result = false });
+            }
+
+            var user = (from x in db.Users
+                        where x.id == id.ToString()
+                        select x).FirstOrDefault();
+            if (user==null)
+            {
+                return Json(new { Result = false });
+            }
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return Json(new { Result = true });
         }
         #endregion
         #region Majors
@@ -218,6 +243,26 @@ namespace EventProject.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public JsonResult DeleteMajor(int? id)
+        {
+            if (id == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            var major = (from x in db.Majors
+                        where x.id == id
+                        select x).FirstOrDefault();
+            if (major == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            db.Majors.Remove(major);
+            db.SaveChanges();
+            return Json(new { Result = true });
+        }
         #endregion
         #region Faculties
         public ActionResult FacultiesList()
@@ -279,6 +324,26 @@ namespace EventProject.Controllers
                 return RedirectToAction("FacultiesList");
             }
             return View();
+        }
+        [HttpPost]
+        public JsonResult DeleteFaculty(int? id)
+        {
+            if (id == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            var faculty = (from x in db.Faculties
+                         where x.id == id
+                         select x).FirstOrDefault();
+            if (faculty == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            db.Faculties.Remove(faculty);
+            db.SaveChanges();
+            return Json(new { Result = true });
         }
         #endregion
         [NonAction]

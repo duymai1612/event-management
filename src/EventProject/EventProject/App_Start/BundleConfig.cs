@@ -27,6 +27,8 @@ namespace EventProject
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/themes/base/jquery-ui.min.css"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

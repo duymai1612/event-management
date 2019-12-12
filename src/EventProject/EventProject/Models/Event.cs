@@ -29,6 +29,7 @@ namespace EventProject.Models
         public System.DateTime endDate { get; set; }
         public string status { get; set; }
         public bool isInactive { get; set; }
+        public string shortDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }

@@ -1,4 +1,3 @@
-D:\Code\WebProject\event-management\src\EventProject\EventProject\obj\Debug\EventProject.csprojAssemblyReference.cache
 D:\Code\WebProject\event-management\src\EventProject\EventProject\obj\Debug\EventProject.csproj.CoreCompileInputs.cache
 D:\Code\WebProject\event-management\src\EventProject\EventProject\bin\EventProject.dll.config
 D:\Code\WebProject\event-management\src\EventProject\EventProject\bin\EventProject.dll
@@ -78,3 +77,4 @@ D:\Code\WebProject\event-management\src\EventProject\EventProject\bin\Microsoft.
 D:\Code\WebProject\event-management\src\EventProject\EventProject\obj\Debug\EventProject.csproj.CopyComplete
 D:\Code\WebProject\event-management\src\EventProject\EventProject\obj\Debug\EventProject.dll
 D:\Code\WebProject\event-management\src\EventProject\EventProject\obj\Debug\EventProject.pdb
+D:\Code\WebProject\event-management\src\EventProject\EventProject\obj\Debug\EventProject.csprojAssemblyReference.cache

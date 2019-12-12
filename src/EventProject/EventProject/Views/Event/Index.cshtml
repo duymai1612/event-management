@@ -4,18 +4,22 @@
     ViewBag.Title = "Event";
 }
 
-<h2>Index</h2>
+<h2>Event</h2>
 
-@if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+@if (Session["Role"] != null &&
+             ((Session["Role"].ToString() == "Admin") || (Session["Role"].ToString() == "SAdmin")))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New Event", "Create")
+    </p>
 }
 <table class="table">
     <tr>
         <th>
             Event Name
+        </th>
+        <th>
+            Short Description
         </th>
         <th>
             Address
@@ -29,7 +33,8 @@
         <th>
             Status
         </th>
-        @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+        @if (Session["Role"] != null &&
+             ((Session["Role"].ToString() == "Admin") || (Session["Role"].ToString() == "SAdmin")))
         {
             <th>
                 InActive
@@ -38,35 +43,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventStartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-         @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
-         {
-        <td>
-            @Html.DisplayFor(modelItem => item.IsInActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.EventID })
-        </td>
-         }
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            @if (Session["Role"] != null &&
+                ((Session["Role"].ToString() == "Admin") || (Session["Role"].ToString() == "SAdmin")))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsInActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EventID })
+                </td>
+            }
+        </tr>
+    }
 
 </table>

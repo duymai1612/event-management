@@ -16,10 +16,14 @@ namespace EventProject.Controllers
             var eventLs = new List<EventViewModel>();
             db.Events.ToList().ForEach(eve =>
             {
-                eventLs.Add(new EventViewModel(eve.id, eve.name, eve.description, eve.startDate,
+                eventLs.Add(new EventViewModel(eve.id, eve.name, eve.shortDescription, eve.description, eve.startDate,
                     eve.endDate, eve.status, eve.isInactive));
             });
-            return View(eventLs);
+
+            var model = from x in eventLs
+                        orderby x.EventStartDate descending
+                        select x;
+            return View(model);
         }
     }
 }

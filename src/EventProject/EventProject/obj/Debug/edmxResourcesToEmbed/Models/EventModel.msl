@@ -16,6 +16,7 @@
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="EventManagementModel.Event">
         <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="shortDescription" ColumnName="shortDescription" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
