@@ -7,16 +7,31 @@ namespace EventProject.Models
 {
     public class EventViewModel
     {
-        public EventViewModel (int eventId, string eventName, string shortDesc, string eventDesc, 
+        public EventViewModel (int eventId, string eventName,string eventAddress, string shortDesc, string eventDesc, 
             DateTime start, DateTime end, string status, bool? isInActive)
         {
             this.EventID = eventId;
             this.EventName = eventName;
+            this.EventAddress = eventAddress;
             this.EventShortDescription = shortDesc;
             this.EventDescription = eventDesc;
             this.EventStartDate = start;
             this.EventEndDate = end;
+            this.Status = status;
             this.IsInActive = isInActive;
+        }
+
+        public void updateEvent(Event eve)
+        {
+            eve.id=this.EventID;
+            eve.name=this.EventName;
+            eve.address = this.EventAddress;
+            eve.shortDescription=this.EventShortDescription;
+            eve.description=this.EventDescription;
+            eve.startDate=this.EventStartDate;
+            eve.endDate=this.EventEndDate;
+            eve.status = this.Status;
+            eve.isInactive=this.IsInActive;
         }
 
         public EventViewModel()

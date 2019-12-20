@@ -10,7 +10,7 @@
              ((Session["Role"].ToString() == "Admin") || (Session["Role"].ToString() == "SAdmin")))
 {
     <p>
-        @Html.ActionLink("Create New Event", "Create")
+        @Html.ActionLink("Create New Event", "CreateEvent")
     </p>
 }
 <table class="table">
@@ -70,10 +70,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IsInActive)
                 </td>
+
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.EventID })
+                    @Html.ActionLink("Edit", "UpdateEvent", new { id = item.EventID }) |
+                    @Html.ActionLink("Details", "DetailsEvent", new { id = item.EventID }) |
+                    @Html.ActionLink("Delete", "DeleteEvent", new { id = item.EventID })
                 </td>
             }
         </tr>
