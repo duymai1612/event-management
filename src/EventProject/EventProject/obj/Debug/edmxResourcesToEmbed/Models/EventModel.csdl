@@ -19,15 +19,15 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="isInactive" Type="Boolean" />
+    <Property Name="isInactive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Comments" Relationship="Self.FK_Event_Comment" FromRole="Event" ToRole="Comment" />
     <NavigationProperty Name="UserEvents" Relationship="Self.FK_UserEvent_Event" FromRole="Event" ToRole="UserEvent" />
-    <Property Name="shortDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shortDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
@@ -48,6 +48,16 @@
     <Property Name="isInactive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Faculty" Relationship="Self.FK_Major_Faculty" FromRole="Major" ToRole="Faculty" />
     <NavigationProperty Name="Users" Relationship="Self.FK_User_Major" FromRole="Major" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -155,6 +165,7 @@
     <EntitySet Name="Events" EntityType="Self.Event" />
     <EntitySet Name="Faculties" EntityType="Self.Faculty" />
     <EntitySet Name="Majors" EntityType="Self.Major" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="UserEvents" EntityType="Self.UserEvent" />
     <AssociationSet Name="FK_Event_Comment" Association="Self.FK_Event_Comment">
@@ -181,16 +192,5 @@
       <End Role="User" EntitySet="Users" />
       <End Role="UserEvent" EntitySet="UserEvents" />
     </AssociationSet>
-    <EntitySet Name="sysdiagrams" EntityType="EventManagementModel.sysdiagram" />
   </EntityContainer>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
 </Schema>

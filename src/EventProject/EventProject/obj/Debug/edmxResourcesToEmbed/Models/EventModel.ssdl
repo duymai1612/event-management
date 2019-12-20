@@ -17,13 +17,13 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="description" Type="nvarchar" MaxLength="100" />
-    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="shortDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="startDate" Type="datetime" Nullable="false" />
     <Property Name="endDate" Type="datetime" Nullable="false" />
     <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="isInactive" Type="bit" />
-    <Property Name="shortDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="isInactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>

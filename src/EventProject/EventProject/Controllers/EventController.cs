@@ -23,7 +23,6 @@ namespace EventProject.Controllers
             var model = from x in eventLs
                         orderby x.EventStartDate descending
                         select x;
-
             return View(model);
         }
     }

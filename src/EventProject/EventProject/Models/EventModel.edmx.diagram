@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="EventManagementModel.Event" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="EventManagementModel.Faculty" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EventManagementModel.Major" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventManagementModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EventManagementModel.User" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="EventManagementModel.UserEvent" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="EventManagementModel.FK_Event_Comment" ManuallyRouted="false" />
@@ -17,7 +18,6 @@
         <AssociationConnector Association="EventManagementModel.FK_Major_Faculty" ManuallyRouted="false" />
         <AssociationConnector Association="EventManagementModel.FK_User_Major" ManuallyRouted="false" />
         <AssociationConnector Association="EventManagementModel.FK_UserEvent_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="EventManagementModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

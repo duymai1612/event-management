@@ -28,7 +28,7 @@ namespace EventProject.Models
         public System.DateTime startDate { get; set; }
         public System.DateTime endDate { get; set; }
         public string status { get; set; }
-        public Nullable<bool> isInactive { get; set; }
+        public bool isInactive { get; set; }
         public string shortDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
