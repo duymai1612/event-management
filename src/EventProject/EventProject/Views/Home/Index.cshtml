@@ -1,14 +1,16 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/dashboard.cshtml";
 }
 
 @if (Session["UserID"] == null)
 {
     <div style="font-size: 32px; display: flex; justify-content: center">
-    Welcome to our application
+        Welcome to our application
     </div>
 }
-else{ 
+else
+{
     <section class="statistic">
         <div id="piechart1" style="width: 600px; height: 400px;"></div>
         <div id="piechart2" style="width: 600px; height: 400px;"></div>
