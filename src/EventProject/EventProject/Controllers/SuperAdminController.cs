@@ -1,4 +1,5 @@
-﻿using EventProject.Models;
+﻿using EventProject.App_Start;
+using EventProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -11,11 +12,13 @@ using System.Web.Mvc;
 
 namespace EventProject.Controllers
 {
+    [Authorization]
+    [SuperAdminAuthorization]
     public class SuperAdminController : Controller
     {
         // GET: SuperAdmin
-        EventContext db = new EventContext();
-        #region Users
+        EventContext1 db = new EventContext1();
+        #region Users         
         public ActionResult UsersList()
         {
             var usrLs = new List<UserViewModel>();
@@ -24,13 +27,17 @@ namespace EventProject.Controllers
                 usrLs.Add(new UserViewModel(usr.id, usr.password, usr.firstName, usr.lastName, usr.dob,
                     usr.gender, usr.role, usr.imageUrl, usr.isInactive, usr.majorId));
             });
-            return View(usrLs);
+
+            var model = from x in usrLs
+                        orderby x.UserID ascending
+                        select x;
+            return View(model);
         }
         [HttpGet]
         public ActionResult CreateUser()
         {
             ViewBag.majorList = new SelectList(
-                db.Majors.Select(x => new { Text = x.name, Value = x.id }), "Value", "Text");
+                db.Majors.Where(x => x.isInactive==false).Select(x => new { Text = x.name, Value = x.id }), "Value", "Text");
 
             return View();
         }
@@ -100,7 +107,7 @@ namespace EventProject.Controllers
                 usr.dob, usr.gender, usr.role, usr.imageUrl, usr.isInactive, usr.majorId);
 
             ViewBag.majorList = new SelectList(
-                db.Majors.Select(x => new { Text = x.name, Value = x.id }), "Value", "Text", usr.majorId);
+                db.Majors.Where(x => x.isInactive==false).Select(x => new { Text = x.name, Value = x.id }), "Value", "Text", usr.majorId);
 
             return View(edituser);
         }
@@ -147,6 +154,27 @@ namespace EventProject.Controllers
                 return RedirectToAction("UsersList");
             }
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult DeleteUser(int? id)
+        {
+            if (id==null)
+            {
+                return Json(new { Result = false });
+            }
+
+            var user = (from x in db.Users
+                        where x.id == id.ToString()
+                        select x).FirstOrDefault();
+            if (user==null)
+            {
+                return Json(new { Result = false });
+            }
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return Json(new { Result = true });
         }
         #endregion
         #region Majors
@@ -215,6 +243,26 @@ namespace EventProject.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public JsonResult DeleteMajor(int? id)
+        {
+            if (id == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            var major = (from x in db.Majors
+                        where x.id == id
+                        select x).FirstOrDefault();
+            if (major == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            db.Majors.Remove(major);
+            db.SaveChanges();
+            return Json(new { Result = true });
+        }
         #endregion
         #region Faculties
         public ActionResult FacultiesList()
@@ -277,6 +325,95 @@ namespace EventProject.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public JsonResult DeleteFaculty(int? id)
+        {
+            if (id == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            var faculty = (from x in db.Faculties
+                         where x.id == id
+                         select x).FirstOrDefault();
+            if (faculty == null)
+            {
+                return Json(new { Result = false });
+            }
+
+            db.Faculties.Remove(faculty);
+            db.SaveChanges();
+            return Json(new { Result = true });
+        }
+
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            if (Session["UserID"] == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            
+            User usr = db.Users.Find(Session["UserID"]);
+
+            if (usr == null)
+            {
+                return HttpNotFound();
+            }
+
+            UserViewModel edituser = new UserViewModel(usr.id, usr.password, usr.firstName, usr.lastName,
+                usr.dob, usr.gender, usr.role, usr.imageUrl, usr.isInactive, usr.majorId);
+
+            ViewBag.majorList = new SelectList(
+                db.Majors.Where(x => x.isInactive == false).Select(x => new { Text = x.name, Value = x.id }), "Value", "Text", usr.majorId);
+
+            return View(edituser);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile([Bind(Include = "UserID, Password, FirstName, LastName," +
+            "DateOfBirth, Gender, Role, ImageFile, MajorID, IsInActive")] UserViewModel usr)
+        {
+            if (!string.IsNullOrEmpty(usr.UserID) || !string.IsNullOrEmpty(usr.FirstName) ||
+                !string.IsNullOrEmpty(usr.LastName))
+            {
+                User updateusr = new User();
+                if (usr.ImageFile != null)
+                {
+                    string relativePath = "~/Images/" + DateTime.Now.Ticks.ToString() + "_" + usr.ImageFile.FileName;
+                    string physicalPath = Server.MapPath(relativePath);
+                    string imageFolder = Path.GetDirectoryName(physicalPath);
+                    if (!Directory.Exists(imageFolder))
+                    {
+                        Directory.CreateDirectory(imageFolder);
+                    }
+                    usr.ImageFile.SaveAs(physicalPath);
+                    usr.ImageURL = relativePath;
+                }
+                else
+                {
+                    var curUsr = (from x in db.Users
+                                  where x.id == usr.UserID
+                                  select x.imageUrl).FirstOrDefault();
+                    usr.ImageURL = curUsr;
+                }
+
+                if (usr.Password == null)
+                {
+                    var curUsr = (from x in db.Users
+                                  where x.id == usr.UserID
+                                  select x.password).FirstOrDefault();
+                    usr.Password = getMD5(curUsr);
+                }
+
+                usr.updateUser(updateusr);
+                db.Entry(updateusr).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("UsersList");
+            }
+            return View();
+        }
+
         #endregion
         [NonAction]
         public string getMD5(string password)

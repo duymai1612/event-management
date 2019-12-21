@@ -4,7 +4,7 @@
     ViewBag.Title = "Faculties List";
 }
 
-<h2>FacultyList</h2>
+<h2>Faculties List</h2>
 
 <p>
     @Html.ActionLink("Create New Faculty", "CreateFaculty")
@@ -29,11 +29,32 @@
             @Html.DisplayFor(modelItem => item.IsInActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "UpdateFaculty", new { id=item.FacultyID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FacultyID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FacultyID })
+            @Html.ActionLink("Edit", "UpdateFaculty", new { id = item.FacultyID }) |
+            <button type="button" onclick="deleteFaculty(@item.FacultyID)" class="btn btn-info">Delete</button>
         </td>
     </tr>
 }
 
 </table>
+
+<script>
+    function deleteFaculty(id) {
+        var answer = confirm("Do you want to delete this faculty ?");
+        if (answer) {
+            var data = { "id": id }
+            $.post("/SuperAdmin/DeleteFaculty", data,
+                (response) => {
+                    if (response && response.Result === false) {
+                        alert("Delete fail !");
+                    }
+                    else {
+                        alert("Delete successfully !");
+                        window.location.href = "/SuperAdmin/FacultiesList";
+                    }
+                });
+        }
+        else {
+            return false;
+        }
+    }
+</script>

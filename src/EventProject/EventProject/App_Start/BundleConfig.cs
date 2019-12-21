@@ -26,7 +26,10 @@ namespace EventProject
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/themes/base/jquery-ui.min.css"));
+                      "~/Content/themes/base/jquery-ui.min.css",
+                      "~/Content/dashboard.css"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

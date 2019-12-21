@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EventManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EventModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="commentId" />
@@ -28,6 +28,7 @@
           <Property Name="endDate" Type="datetime" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="isInactive" Type="bit" />
+          <Property Name="shortDescription" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -152,7 +153,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EventManagementModelStoreContainer">
+        <EntityContainer Name="EventModelStoreContainer">
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
@@ -189,7 +190,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EventManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EventModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="commentId" />
@@ -215,6 +216,7 @@
           <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isInactive" Type="Boolean" />
+          <Property Name="shortDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Event_Comment" FromRole="Event" ToRole="Comment" />
           <NavigationProperty Name="UserEvents" Relationship="Self.FK_UserEvent_Event" FromRole="Event" ToRole="UserEvent" />
         </EntityType>
@@ -349,7 +351,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EventContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EventContext1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="Faculties" EntityType="Self.Faculty" />
@@ -387,9 +389,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EventManagementModelStoreContainer" CdmEntityContainer="EventContext">
+        <EntityContainerMapping StorageEntityContainer="EventModelStoreContainer" CdmEntityContainer="EventContext1">
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="EventManagementModel.Comment">
+            <EntityTypeMapping TypeName="EventModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="commentId" ColumnName="commentId" />
                 <ScalarProperty Name="content" ColumnName="content" />
@@ -401,7 +403,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="EventManagementModel.Event">
+            <EntityTypeMapping TypeName="EventModel.Event">
               <MappingFragment StoreEntitySet="Event">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -411,11 +413,12 @@
                 <ScalarProperty Name="endDate" ColumnName="endDate" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="isInactive" ColumnName="isInactive" />
+                <ScalarProperty Name="shortDescription" ColumnName="shortDescription" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Faculties">
-            <EntityTypeMapping TypeName="EventManagementModel.Faculty">
+            <EntityTypeMapping TypeName="EventModel.Faculty">
               <MappingFragment StoreEntitySet="Faculty">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -424,7 +427,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Majors">
-            <EntityTypeMapping TypeName="EventManagementModel.Major">
+            <EntityTypeMapping TypeName="EventModel.Major">
               <MappingFragment StoreEntitySet="Major">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="facultyId" ColumnName="facultyId" />
@@ -434,7 +437,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="EventManagementModel.sysdiagram">
+            <EntityTypeMapping TypeName="EventModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -445,7 +448,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="EventManagementModel.User">
+            <EntityTypeMapping TypeName="EventModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -461,7 +464,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserEvents">
-            <EntityTypeMapping TypeName="EventManagementModel.UserEvent">
+            <EntityTypeMapping TypeName="EventModel.UserEvent">
               <MappingFragment StoreEntitySet="UserEvent">
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="eventId" ColumnName="eventId" />

@@ -33,7 +33,7 @@ namespace EventProject.Models
 
         public string getFacultyName(int facId)
         {
-            using (EventContext db = new EventContext())
+            using (EventContext1 db = new EventContext1())
             {
                 var name = (from x in db.Faculties
                             where x.id == facId
@@ -53,7 +53,7 @@ namespace EventProject.Models
         public string FacultyName { get; set; }
         public List<Faculty> FacultyList()
         {
-            EventContext db = new EventContext();
+            EventContext1 db = new EventContext1();
             return db.Faculties.ToList();
         }
     }

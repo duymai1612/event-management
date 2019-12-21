@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="EventManagementModelStoreContainer" CdmEntityContainer="EventContext">
+  <EntityContainerMapping StorageEntityContainer="EventModelStoreContainer" CdmEntityContainer="EventContext1">
     <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="EventManagementModel.Comment">
+      <EntityTypeMapping TypeName="EventModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
           <ScalarProperty Name="commentId" ColumnName="commentId" />
           <ScalarProperty Name="content" ColumnName="content" />
@@ -14,7 +14,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Events">
-      <EntityTypeMapping TypeName="EventManagementModel.Event">
+      <EntityTypeMapping TypeName="EventModel.Event">
         <MappingFragment StoreEntitySet="Event">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -24,11 +24,12 @@
           <ScalarProperty Name="endDate" ColumnName="endDate" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="isInactive" ColumnName="isInactive" />
+          <ScalarProperty Name="shortDescription" ColumnName="shortDescription" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Faculties">
-      <EntityTypeMapping TypeName="EventManagementModel.Faculty">
+      <EntityTypeMapping TypeName="EventModel.Faculty">
         <MappingFragment StoreEntitySet="Faculty">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -37,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Majors">
-      <EntityTypeMapping TypeName="EventManagementModel.Major">
+      <EntityTypeMapping TypeName="EventModel.Major">
         <MappingFragment StoreEntitySet="Major">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="facultyId" ColumnName="facultyId" />
@@ -47,7 +48,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="EventManagementModel.sysdiagram">
+      <EntityTypeMapping TypeName="EventModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -58,7 +59,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="EventManagementModel.User">
+      <EntityTypeMapping TypeName="EventModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="password" ColumnName="password" />
@@ -74,7 +75,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserEvents">
-      <EntityTypeMapping TypeName="EventManagementModel.UserEvent">
+      <EntityTypeMapping TypeName="EventModel.UserEvent">
         <MappingFragment StoreEntitySet="UserEvent">
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="eventId" ColumnName="eventId" />

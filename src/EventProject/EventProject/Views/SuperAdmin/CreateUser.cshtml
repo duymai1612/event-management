@@ -58,9 +58,9 @@
             @Html.Label("Gender:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 Male
-                @Html.RadioButtonFor(model => model.Gender, "Male", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButton("Gender", "Male", true, new { htmlAttributes = new { @class = "form-control" } })
                 Female
-                @Html.RadioButtonFor(model => model.Gender, "Female", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButton("Gender", "Female", new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
@@ -70,9 +70,9 @@
                 @*@Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })*@
                 Student
-                @Html.RadioButtonFor(model => model.Role, "Student", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButton("Role", "Student", true , new { htmlAttributes = new { @class = "form-control" } })
                 Admin
-                @Html.RadioButtonFor(model => model.Role, "Admin", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButton("Role", "Admin", new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 

@@ -125,9 +125,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AuthorizationAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SuperAdminAuthorizationAttribute.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
@@ -182,6 +185,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dashboard.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -229,8 +233,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\EventModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EventModel.Context.cs</LastGenOutput>
       <DependentUpon>EventModel.edmx</DependentUpon>
+      <LastGenOutput>EventModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\EventModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -247,6 +251,7 @@
       <DependentUpon>EventModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -283,6 +288,14 @@
     <Content Include="Views\SuperAdmin\UsersList.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateFaculty.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateMajor.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Shared\dashboard.cshtml" />
+    <Content Include="Views\Event\CreateEvent.cshtml" />
+    <Content Include="Views\Event\DeleteEvent.cshtml" />
+    <Content Include="Views\Event\DetailsEvent.cshtml" />
+    <Content Include="Views\Event\UpdateEvent.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\SuperAdmin\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

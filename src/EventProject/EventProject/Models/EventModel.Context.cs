@@ -13,10 +13,10 @@ namespace EventProject.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EventContext : DbContext
+    public partial class EventContext1 : DbContext
     {
-        public EventContext()
-            : base("name=EventContext")
+        public EventContext1()
+            : base("name=EventContext1")
         {
         }
     

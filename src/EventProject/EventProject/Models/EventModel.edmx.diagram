@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7948f570bf9f47e2a12525f507580358" Name="Diagram1">
-        <EntityTypeShape EntityType="EventManagementModel.Comment" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventManagementModel.Event" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventManagementModel.Faculty" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventManagementModel.Major" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventManagementModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventManagementModel.User" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventManagementModel.UserEvent" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="EventManagementModel.FK_Event_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="EventManagementModel.FK_User_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="EventManagementModel.FK_UserEvent_Event" ManuallyRouted="false" />
-        <AssociationConnector Association="EventManagementModel.FK_Major_Faculty" ManuallyRouted="false" />
-        <AssociationConnector Association="EventManagementModel.FK_User_Major" ManuallyRouted="false" />
-        <AssociationConnector Association="EventManagementModel.FK_UserEvent_User" ManuallyRouted="false" />
+      <Diagram DiagramId="5c410d00ce3b4ec3bfe6b5357d4a71e9" Name="Diagram1">
+        <EntityTypeShape EntityType="EventModel.Comment" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventModel.Event" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventModel.Faculty" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventModel.Major" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventModel.User" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventModel.UserEvent" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="EventModel.FK_Event_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="EventModel.FK_User_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="EventModel.FK_UserEvent_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="EventModel.FK_Major_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="EventModel.FK_User_Major" ManuallyRouted="false" />
+        <AssociationConnector Association="EventModel.FK_UserEvent_User" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

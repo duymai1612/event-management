@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="EventManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="EventModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Comment">
     <Key>
       <PropertyRef Name="commentId" />
@@ -25,6 +25,7 @@
     <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="isInactive" Type="Boolean" />
+    <Property Name="shortDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Comments" Relationship="Self.FK_Event_Comment" FromRole="Event" ToRole="Comment" />
     <NavigationProperty Name="UserEvents" Relationship="Self.FK_UserEvent_Event" FromRole="Event" ToRole="UserEvent" />
   </EntityType>
@@ -159,7 +160,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="EventContext" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="EventContext1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Comments" EntityType="Self.Comment" />
     <EntitySet Name="Events" EntityType="Self.Event" />
     <EntitySet Name="Faculties" EntityType="Self.Faculty" />

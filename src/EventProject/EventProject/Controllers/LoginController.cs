@@ -13,27 +13,33 @@ namespace EventManagement.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        EventContext db = new EventContext();
+        EventContext1 db = new EventContext1();
         [HttpGet]
         public ActionResult Index()
         {
             if (Session["UserID"] != null) Session["UserID"] = null;
+            if (Session["Role"] != null) Session["Role"] = null;
             return View();
         }
         [HttpPost]
-        public ActionResult Index(string Username, string Password, string LogType)
+        public ActionResult Index(string Username, string Password)
         {
             if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
             {
                 string pwd = getMD5(Password);
                 var userList = (from x in db.Users
-                                where x.id == Username && x.password == pwd && x.role == LogType
+                                where x.id == Username && x.password == pwd && x.isInactive==false
                                 select x).FirstOrDefault();
 
                 if (userList != null)
                 {
                     Session["UserID"] = Username;
+                    Session["Role"] = userList.role;
                     return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return View();
                 }
             }
             return View();

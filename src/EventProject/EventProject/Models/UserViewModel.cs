@@ -9,7 +9,7 @@ namespace EventProject.Models
 {
     public class UserViewModel
     {
-        EventContext db = new EventContext();
+        EventContext1 db = new EventContext1();
         public UserViewModel(string id, string pwd, string fname, string lname, DateTime? dob, string gdr,
             string role, string url, bool isInActive, int? majorid)
         {
@@ -33,7 +33,7 @@ namespace EventProject.Models
 
         public string getMajorName(int? majorid)
         {
-            using (EventContext db = new EventContext())
+            using (EventContext1 db = new EventContext1())
             {
                var name  = (from x in db.Majors
                                where x.id == majorid

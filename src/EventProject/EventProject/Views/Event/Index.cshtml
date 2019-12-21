@@ -1,0 +1,83 @@
+﻿@model IEnumerable<EventProject.Models.EventViewModel>
+
+@{
+    ViewBag.Title = "Event";
+}
+
+<h2>Event</h2>
+
+@if (Session["Role"] != null &&
+             ((Session["Role"].ToString() == "Admin") || (Session["Role"].ToString() == "SAdmin")))
+{
+    <p>
+        @Html.ActionLink("Create New Event", "CreateEvent")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            Event Name
+        </th>
+        <th>
+            Short Description
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th>
+            Status
+        </th>
+        @if (Session["Role"] != null &&
+             ((Session["Role"].ToString() == "Admin") || (Session["Role"].ToString() == "SAdmin")))
+        {
+            <th>
+                InActive
+            </th>
+        }
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            @if (Session["Role"] != null &&
+                ((Session["Role"].ToString() == "Admin") || (Session["Role"].ToString() == "SAdmin")))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsInActive)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "UpdateEvent", new { id = item.EventID }) |
+                    @Html.ActionLink("Details", "DetailsEvent", new { id = item.EventID }) |
+                    @Html.ActionLink("Delete", "DeleteEvent", new { id = item.EventID })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
