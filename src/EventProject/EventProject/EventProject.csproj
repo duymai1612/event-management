@@ -290,6 +290,10 @@
     <Content Include="Views\SuperAdmin\UpdateMajor.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Shared\dashboard.cshtml" />
+    <Content Include="Views\Event\CreateEvent.cshtml" />
+    <Content Include="Views\Event\DeleteEvent.cshtml" />
+    <Content Include="Views\Event\DetailsEvent.cshtml" />
+    <Content Include="Views\Event\UpdateEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
