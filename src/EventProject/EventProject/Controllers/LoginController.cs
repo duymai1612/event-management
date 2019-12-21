@@ -35,7 +35,7 @@ namespace EventManagement.Controllers
                 {
                     Session["UserID"] = Username;
                     Session["Role"] = userList.role;
-                    return RedirectToAction("Index", "Event");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
